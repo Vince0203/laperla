@@ -30,7 +30,8 @@ namespace LaPerLa.Manager
         public District AddDisctrict(District info)
         {
             var districtInfo = ModelConverter.ConvertDistrictFromBusiness(info);
-            return this.metadataAccessHander.AddDistrictInfo(districtInfo);
+            var curDistrictInfo = this.metadataAccessHander.AddDistrictInfo(districtInfo);
+            return ModelConverter.ConvertDistrictToBusiness(curDistrictInfo);
         }
     }
 }

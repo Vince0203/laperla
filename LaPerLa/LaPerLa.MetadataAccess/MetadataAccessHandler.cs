@@ -9,7 +9,7 @@ using NHibernate;
 
 namespace LaPerLa.MetadataAccess
 {
-    public class MetadataAccessHandler ： IMetadataAccessHander
+    public class MetadataAccessHandler : IMetadataAccessHander
     {
         /// <summary>
         /// 添加地区.
@@ -24,14 +24,16 @@ namespace LaPerLa.MetadataAccess
                 {
                     using(var tran = session.BeginTransaction())
                     {
-                        var districtInfo = session.Save(info);
+                        var districtInfo = (DistrictInfo)session.Save(info);
                         tran.Commit();
                         return districtInfo;
                     }
                 }
             }
             catch(Exception ex)
-            {}
+            {
+                return null;
+            }
         }
     }
 }
